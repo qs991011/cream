@@ -10,6 +10,10 @@ import UIKit
 import WebKit
 
 class ViewController: UIViewController,WKNavigationDelegate,WKUIDelegate,WKScriptMessageHandler {
+    lazy var eventHandler : QSEventHandler = {
+        let handler = QSEventHandler()
+        return handler
+    }()
     
     lazy var webView : WKWebView = {
         let config = WKWebViewConfiguration()
@@ -29,7 +33,7 @@ class ViewController: UIViewController,WKNavigationDelegate,WKUIDelegate,WKScrip
         config.userContentController = WKUserContentController()
         config.userContentController.addUserScript(script)
         
-        config.userContentController.add(self, name: "QSEventHandler")
+        config.userContentController.add(eventHandler, name: "QSEventHandler")
         config.userContentController.add(self, name: "GCIJS")
         let wv = WKWebView(frame: UIScreen.main.bounds,configuration: config)
         wv.navigationDelegate = self
@@ -71,7 +75,6 @@ class ViewController: UIViewController,WKNavigationDelegate,WKUIDelegate,WKScrip
     func createMainScript() -> String {
         let result = "iOSAPP={callGciFunction:function(methodname,params){return JSON.stringify(\("{age:24}"))}}"
         return result
-        
     }
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
