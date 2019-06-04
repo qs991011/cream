@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="18E226" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Country" representedClassName="Country" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="quakes" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Quake" inverseName="coutries" inverseEntity="Quake" syncable="YES"/>
+    </entity>
+    <entity name="Quake" representedClassName="Quake" syncable="YES">
+        <attribute name="magnitude" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="place" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="time" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="coutries" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Country" inverseName="quakes" inverseEntity="Country" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Quake" positionX="-151.75" positionY="96.6796875" width="128" height="103"/>
+        <element name="Country" positionX="112.2109375" positionY="124.2109375" width="128" height="73"/>
+    </elements>
+</model>

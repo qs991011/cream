@@ -1,6 +1,4 @@
 //
-//  main.c
-//  dd2hex
 //
 //  Created by qiansheng on 2019/4/23.
 //  Copyright © 2019 GCI. All rights reserved.
@@ -16,10 +14,15 @@
 #include <unistd.h>
 
 int open_listenfd(char *port);
-int main(int argc, const char * argv[]) {
+int main(int argc, char * argv[]) {
     int listenfd, connfd = 0;
     socklen_t clientlen;
-    listenfd = open_listenfd("8887");
+    if (argc != 2) {
+        printf("must two params \n");
+        return 0;
+    }
+    char *port = argv[1];
+    listenfd = open_listenfd(port);
     int connd = accept(listenfd, (struct sockaddr*)&clientlen, &clientlen);
     if (connfd < 1) {
         printf("appect error");
